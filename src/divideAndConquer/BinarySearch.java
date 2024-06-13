@@ -16,9 +16,9 @@ public class BinarySearch {
 	// hidden recursive search
 	private int binarySearch(int[] array, int elemToFind, int left, int right) {
 
-		int middle = left + ((right - left) / 2);
+		int middle = (right + left) / 2;
 
-		if (right < left || array.length <= middle)
+		if (right < left || array.length == middle)
 			return -1;
 
 		if (elemToFind == array[middle])
