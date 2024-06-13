@@ -27,3 +27,23 @@ A more efficient way would be to use the data structure known as Heap. A heap is
     The root is at index 0, and for any node at index `i`, the left child is at index `2i` and the right child is at index `2i + 1`.
 
     If a child is at position `i`, then its parent is at position `FLOOR(i/2)`. Floor: parte entera.
+
+### Operations
+
+## Insert
+
+![Priority Queue Insert](add-elem.PNG)
+
+1. Add the element to the **end** of the array.
+
+2. **WHILE** parent exists **AND** parent bigger than elem: Swap the element with its parent.
+
+## Remove
+
+![Priority Queue Remove](extract-elem.PNG)
+
+1. Remove the root element. (return it or don't)
+
+2. Move the last element to the root.
+
+3. **WHILE** left child exists: Compare the element with its children. If the element is smaller than the children, swap it with the smallest child. **BREAK** if the element is bigger than both children.
