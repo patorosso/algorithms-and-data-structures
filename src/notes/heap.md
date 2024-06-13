@@ -1,4 +1,4 @@
-## Priority Queue
+### Priority Queue
 
 ### Definition
 
@@ -32,7 +32,7 @@ A more efficient way would be to use the data structure known as Heap. A heap is
 
 ## Insert
 
-![Priority Queue Insert](add-elem.PNG)
+![Priority Queue Insert](./images/add-elem.PNG)
 
 1. Add the element to the **end** of the array.
 
@@ -40,7 +40,7 @@ A more efficient way would be to use the data structure known as Heap. A heap is
 
 ## Remove
 
-![Priority Queue Remove](extract-elem.PNG)
+![Priority Queue Remove](./images/extract-elem.PNG)
 
 1. Remove the root element. (return it or don't)
 
