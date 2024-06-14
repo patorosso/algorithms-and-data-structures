@@ -22,8 +22,8 @@ public class Main {
 		// Power
 
 		double number = 4;
-		int exponent = 2;
-		System.out.println(number + " to the power of " + exponent + " equals: " + Power.doIt(4, 2));
+		int exponent = 3;
+		System.out.println(number + " to the power of " + exponent + " equals: " + Power.doIt(number, exponent));
 
 	}
 }
