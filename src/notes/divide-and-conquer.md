@@ -14,6 +14,14 @@ Binary search is a classic example of the divide-and-conquer strategy. The idea 
 
 Note: conquer is not needed, is trivial. Im just searching halves and discarding them. The important part is the divide.
 
+![Binary search](./images/binary-search.png)
+
+### Powering numbers
+
+One could do the math function power using this strategy. For example, to calculate x^n, one could divide the problem into x^(n/2) and x^(n/2) and then multiply the results. Remembering base cases and also having in mind when N is even or odd, because if it's odd one should do x^(n-1) \* x.
+
+![Binary search](./images/power.png)
+
 ### Merge sort
 
 Merge sort is another example of the divide-and-conquer strategy. The idea is to divide the array into two halves, sort each half, and then merge the two sorted halves to produce a sorted array.
@@ -21,7 +29,3 @@ Merge sort is another example of the divide-and-conquer strategy. The idea is to
 ### Quick sort
 
 Quick sort is another example of the divide-and-conquer strategy. The idea is to divide the array into two halves, partition the array around a pivot element, and then recursively sort the two halves.
-
-### Fibonacci numbers
-
-The Fibonacci numbers can be calculated using the divide-and-conquer strategy. The idea is to divide the problem into smaller subproblems, solve the subproblems, and then combine the solutions to solve the original problem.
