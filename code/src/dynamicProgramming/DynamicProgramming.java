@@ -23,7 +23,8 @@ public class DynamicProgramming {
 			return n;
 		}
 
-		return fibonacci(map, n - 1) + fibonacci(map, n - 2);
+		map.put(n, fibonacci(map, n - 1) + fibonacci(map, n - 2));
+		return map.get(n);
 	}
 
 }
