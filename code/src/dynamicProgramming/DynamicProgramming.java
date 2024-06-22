@@ -69,4 +69,65 @@ public class DynamicProgramming {
 		return loot[length - 1];
 	}
 
+	public static int goldMine(int[][] mine) {
+
+		int maxObtainedGold = 0;
+		HashMap<Position, Integer> map = new HashMap<Position, Integer>();
+
+		for (int i = 0; i < mine[0].length; i++) {
+			Position position = new Position(0, i);
+			int obtainedGold = goldMine(mine, map, position);
+
+			if (obtainedGold > maxObtainedGold)
+				maxObtainedGold = obtainedGold;
+		}
+
+		return maxObtainedGold;
+	}
+
+	// top-down implementation
+	private static int goldMine(int[][] mine, HashMap<Position, Integer> map, Position position) {
+
+		if (map.containsKey(position))
+			return map.get(position);
+
+		int row = position.getRow();
+		int column = position.getColumn();
+
+		if (row == mine.length - 1) {
+			map.put(position, mine[row][column]);
+			return mine[row][column];
+		}
+
+		if (column == 0) {
+			Position south = new Position(row + 1, column);
+			Position southEast = new Position(row + 1, column + 1); // i should consider if the mine has only 1 col...
+
+			map.put(position,
+					mine[row][column] + Integer.max(goldMine(mine, map, south), goldMine(mine, map, southEast)));
+			return map.get(position);
+		}
+
+		if (column == mine[0].length - 1) {
+			Position south = new Position(row + 1, column);
+			Position southWest = new Position(row + 1, column - 1); // i should consider if the mine has only 1 col...
+
+			map.put(position,
+					mine[row][column] + Integer.max(goldMine(mine, map, south), goldMine(mine, map, southWest)));
+			return map.get(position);
+		}
+
+		Position south = new Position(row + 1, column);
+		Position southWest = new Position(row + 1, column - 1); // i should consider if the mine has only 1 col...
+		Position southEast = new Position(row + 1, column + 1); // i should consider if the mine has only 1 col...
+
+		int maxSouth = goldMine(mine, map, south);
+		int maxSouthWest = goldMine(mine, map, southWest);
+		int maxSouthEast = goldMine(mine, map, southEast);
+		int max = Integer.max(maxSouth, Integer.max(maxSouthWest, maxSouthEast));
+
+		map.put(position, mine[row][column] + max);
+		return map.get(position);
+	}
+
 }
