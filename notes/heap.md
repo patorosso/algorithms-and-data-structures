@@ -28,9 +28,13 @@ A more efficient way would be to use the data structure known as Heap. A heap is
 
     If a child is at position `i`, then its parent is at position `FLOOR(i/2)`. Floor: parte entera.
 
-### Operations
+## Time complexity
 
-## Insert
+    For the heap, the time complexity of the insert and remove operations is O(log n).
+
+## Operations
+
+### Insert
 
 ![Priority Queue Insert](./images/add-elem.PNG)
 
@@ -38,7 +42,7 @@ A more efficient way would be to use the data structure known as Heap. A heap is
 
 2. **WHILE** parent exists **AND** parent bigger than elem: Swap the element with its parent.
 
-## Remove
+### Remove
 
 ![Priority Queue Remove](./images/extract-elem.PNG)
 
