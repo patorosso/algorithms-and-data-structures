@@ -1,5 +1,23 @@
 # Sorting algorithms
 
+## Selection
+
+### Description
+
+Selection sort is an in-place comparison sorting algorithm. It's inefficient on large lists, and generally performs worse than the similar insertion sort. Selection sort is noted for its simplicity and has performance advantages over more complicated algorithms in certain situations, particularly where auxiliary memory is limited.
+
+### Complexity
+
+    Big O notation: O(n^2), for worst case.
+
+### Steps
+
+1. Find the smallest element in the array.
+
+2. Swap it with the first element.
+
+3. Repeat the process for the rest of the array.
+
 ## Insertion
 
 ### Description
