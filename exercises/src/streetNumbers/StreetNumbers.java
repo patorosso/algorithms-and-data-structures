@@ -6,7 +6,7 @@ public class StreetNumbers {
 
 		int numberOfHouses = 9800;
 
-		int result = lineal(numberOfHouses);
+		int result = constante(numberOfHouses);
 
 		System.out.println(result);
 	}
@@ -39,13 +39,13 @@ public class StreetNumbers {
 	}
 
 	static int lineal(int n) {
-		
-		int house = n/2;
+
+		int house = n / 2;
 		int leftSum = 0, totalSum = 0;
-		
-		for(int i = 1; i <= n; i++)
+
+		for (int i = 1; i <= n; i++)
 			totalSum += i;
-		
+
 		do {
 			house++;
 			leftSum = 0;
@@ -55,12 +55,33 @@ public class StreetNumbers {
 				leftSum += j;
 
 		} while (leftSum < totalSum - leftSum - house);
-		
+
 		return leftSum == totalSum - leftSum - house ? house : -1;
-		
+
 	}
 
-	static int constante(int n) {
+	static int lineal2(int n) {
+		if (n < 3)
+			return -1;
+
+		for (int i = 1; i <= n; i++) {
+			int leftSum = (i - 1) * i / 2;
+			int rightSum = (n * (n + 1) / 2 - i * (i + 1) / 2);
+			if (leftSum == rightSum)
+				return i;
+		}
 		return -1;
+	}
+
+	// Looking at the top one we can mathematically equal
+	// both leftSum and rightSum to come up with a result value
+	// that depends on the initial n numbers.
+	static int constante(int n) {
+		if (n < 3)
+			return -1;
+		
+		double i = Math.sqrt((Math.pow(n,2)+n)/2);
+		int wholePart = (int) i;
+		return wholePart - i == 0 ? (int) i : -1;
 	}
 }
