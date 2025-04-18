@@ -18,6 +18,8 @@ Selection sort is an in-place comparison sorting algorithm. It's inefficient on 
 
 3. Repeat the process for the rest of the array.
 
+![Selection image](./images/sort-selection.png)
+
 ## Insertion
 
 ### Description
