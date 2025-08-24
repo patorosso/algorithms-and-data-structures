@@ -6,12 +6,15 @@ import java.util.HashSet;
 public class Main {
 
 	public static void main(String[] args) {
+		try {
+			int target = 22;
+			int[] nums = { 22, 2, 7, 11, 15 };
 
-		int target = 22;
-		int[] nums = { 22, 2, 7, 11, 15 };
-
-		boolean result = hasTwoSum(nums, target);
-		System.out.println("Resultado final: " + result);
+			boolean result = hasTwoSum(nums, target);
+			System.out.println("Resultado final: " + result);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	private static boolean hasTwoSum(int[] nums, int target) {
@@ -49,7 +52,7 @@ public class Main {
 
 			if (sum == target)
 				return true;
-			
+
 			if (sum > target)
 				end--;
 			else
