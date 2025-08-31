@@ -51,7 +51,6 @@ public class Main {
 
 			array[iOrdenado + 1] = aux; // O(1)
 		}
-
 	}
 
 	private static void selection(int[] array) {
