@@ -18,8 +18,8 @@ public class Main {
 			throw new IllegalArgumentException("La entrada debe ser mayor a 2.");
 
 //		return streetNumbersQuadratic(n);
-//		return streetNumbersLinear(n);
-		return streetNumbersConstant(n);
+		return streetNumbersLinear(n);
+//		return streetNumbersConstant(n);
 	}
 
 	private static int streetNumbersQuadratic(int n) {
@@ -49,28 +49,6 @@ public class Main {
 				return i;
 		}
 		return -1;
-	}
-
-	// Same es before but without the calculation
-	private static int streetNumbersLegibleLinear(int n) {
-
-		int house = n / 2;
-		int leftSum = 0, totalSum = 0;
-
-		for (int i = 1; i <= n; i++)
-			totalSum += i;
-
-		do {
-			house++;
-			leftSum = 0;
-
-			// left sum:
-			for (int j = 1; j <= house - 1; j++)
-				leftSum += j;
-
-		} while (leftSum < totalSum - leftSum - house);
-
-		return leftSum == totalSum - leftSum - house ? house : -1;
 	}
 
 	private static int streetNumbersConstant(int n) {
