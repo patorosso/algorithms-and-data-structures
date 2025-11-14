@@ -7,13 +7,16 @@ import java.util.*;
  * caras (D6).
  * 
  * @author Rosso, Patricio
- * @version 1.0
+ * @version 2.0
+ * 
  */
 public class Dados {
 
-	public static void main(String[] args) {
-		System.out.println(Dados.calcularCombinaciones(3, 3));
+	public static final int DADOS_MINIMOS = 1;
+	public static final int OBJETIVO_MINIMO = 3;
 
+	public static void main(String[] args) {
+		System.out.println("Resultado final: " + Dados.calcularCombinaciones(3, 3));
 	}
 
 	/**
@@ -26,57 +29,40 @@ public class Dados {
 	 *         objetivo, o 0 si la suma es imposible de alcanzar
 	 */
 	public static int calcularCombinaciones(int cantidadDados, int sumaObjetivo) {
-//		return calcularCombinaciones(cantidadDados, sumaObjetivo, new HashMap<Integer, Integer>(),
-//				new int[cantidadDados]);
+		if (cantidadDados < DADOS_MINIMOS || sumaObjetivo < OBJETIVO_MINIMO)
+			return 0;
 
-		return calcularCombinaciones(cantidadDados, sumaObjetivo, new int[cantidadDados]);
+		return calcularCombinaciones(cantidadDados, sumaObjetivo, new HashMap<String, Integer>());
 	}
 
-	private static int calcularCombinaciones(int cantidadDados, int sumaObjetivo, int[] dados) {
+	private static int calcularCombinaciones(int cantidadDados, int sumaObjetivo, HashMap<String, Integer> mapa) {
+		if (cantidadDados < 0 || sumaObjetivo < 0)
+			return 0;
 
-		boolean arrayEstaListoParaSumar = true;
-
-		for (int i = 0; i < cantidadDados; i++) {
-			if (dados[i] == 0) {
-				arrayEstaListoParaSumar = false;
-				break;
-			}
+		String clave = cantidadDados + "-" + sumaObjetivo;
+		if (mapa.containsKey(clave)) {
+			System.out.println("Encontró clave: " + clave);
+			return mapa.get(clave);
 		}
 
-		if (arrayEstaListoParaSumar) {
-			int sumaDados = 0;
-			for (int i = 0; i < cantidadDados; i++)
-				sumaDados += dados[i];
-
-			return sumaDados == sumaObjetivo ? 1 : 0;
+		boolean obtuvoObjetivo = cantidadDados == 0 && sumaObjetivo == 0;
+		if (obtuvoObjetivo) {
+			System.out.println("Puso clave: " + clave);
+			mapa.put(clave, 1);
+			return 1;
 		}
 
-		int[] arrayCara1 = completarArray(Arrays.copyOf(dados, cantidadDados), 1);
-		int[] arrayCara2 = completarArray(Arrays.copyOf(dados, cantidadDados), 2);
-		int[] arrayCara3 = completarArray(Arrays.copyOf(dados, cantidadDados), 3);
-		int[] arrayCara4 = completarArray(Arrays.copyOf(dados, cantidadDados), 4);
-		int[] arrayCara5 = completarArray(Arrays.copyOf(dados, cantidadDados), 5);
-		int[] arrayCara6 = completarArray(Arrays.copyOf(dados, cantidadDados), 6);
+		var cara1 = calcularCombinaciones(cantidadDados - 1, sumaObjetivo - 1, mapa);
+		var cara2 = calcularCombinaciones(cantidadDados - 1, sumaObjetivo - 2, mapa);
+		var cara3 = calcularCombinaciones(cantidadDados - 1, sumaObjetivo - 3, mapa);
+		var cara4 = calcularCombinaciones(cantidadDados - 1, sumaObjetivo - 4, mapa);
+		var cara5 = calcularCombinaciones(cantidadDados - 1, sumaObjetivo - 5, mapa);
+		var cara6 = calcularCombinaciones(cantidadDados - 1, sumaObjetivo - 6, mapa);
 
-		int cara1 = calcularCombinaciones(cantidadDados, sumaObjetivo, arrayCara1);
-		int cara2 = calcularCombinaciones(cantidadDados, sumaObjetivo, arrayCara2);
-		int cara3 = calcularCombinaciones(cantidadDados, sumaObjetivo, arrayCara3);
-		int cara4 = calcularCombinaciones(cantidadDados, sumaObjetivo, arrayCara4);
-		int cara5 = calcularCombinaciones(cantidadDados, sumaObjetivo, arrayCara5);
-		int cara6 = calcularCombinaciones(cantidadDados, sumaObjetivo, arrayCara6);
+		int total = cara1 + cara2 + cara3 + cara4 + cara5 + cara6;
+		System.out.println("Puso clave: " + clave);
+		mapa.put(clave, total);
 
-		return cara1 + cara2 + cara3 + cara4 + cara5 + cara6;
-	}
-
-	private static int[] completarArray(int[] array, int proximoNumero) {
-
-		for (int i = 0; i < array.length; i++) {
-			if (array[i] == 0) {
-				array[i] = proximoNumero;
-				break;
-			}
-		}
-
-		return array;
+		return total;
 	}
 }
